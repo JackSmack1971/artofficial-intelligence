@@ -1,12 +1,16 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
 
-const app = express()
+const app: express.Express = express()
 app.use(express.json())
 
-app.get('/health', (_, res) => res.json({ status: 'ok' }))
+app.get('/health', (_: Request, res: Response): void => {
+  res.json({ status: 'ok' })
+})
 
-export function startServer(port: number) {
+export function startServer(port: number): void {
   app.listen(port, () => {
     console.log(`Server running on port ${port}`)
   })
 }
+
+export { app }
