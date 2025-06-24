@@ -11,7 +11,7 @@ export async function apiClient(endpoint: string, options?: RequestInit) {
   let lastError: unknown = null
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}${path}`, {
+      const res = await fetch(`${import.meta.env['VITE_API_BASE_URL']}${path}`, {
         ...options,
         signal: controller.signal,
       })
