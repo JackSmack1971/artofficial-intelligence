@@ -25,7 +25,7 @@ export const createSecurityMiddleware = (): express.Router => {
           connectSrc: ["'self'", "https://api.artofficial-intelligence.com"],
         },
       },
-    }),
+    })
   );
   return router;
 };
