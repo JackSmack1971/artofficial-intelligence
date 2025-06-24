@@ -21,7 +21,12 @@
     "useUnknownInCatchVariables": true,
     "noUncheckedIndexedAccess": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["vite/client", "node"],
+    "types": [
+      "vite/client",
+      "node",
+      "jest",
+      "supertest"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
