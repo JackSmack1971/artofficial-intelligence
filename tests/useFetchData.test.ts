@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react'
+import { renderHook, waitFor } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import { useFetchData } from '../src/hooks/useFetchData'
 
@@ -8,8 +8,9 @@ global.fetch = vi.fn(() =>
 
 describe('useFetchData', () => {
   it('returns data without error', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useFetchData('/test'))
-    await waitForNextUpdate()
-    expect(result.current.error).toBeNull()
+    const { result } = renderHook(() => useFetchData('/test'))
+    await waitFor(() => {
+      expect(result.current.error).toBeNull()
+    })
   })
 })
