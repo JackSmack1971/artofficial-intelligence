@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react'
-import { useFetchData } from '@/hooks/useFetchData'
+import { useFetchData } from '../src/hooks/useFetchData'
 
 global.fetch = jest.fn(() => Promise.resolve({ ok: true, json: () => Promise.resolve({}) })) as jest.Mock
 
