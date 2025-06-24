@@ -8,7 +8,7 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <h1>Welcome to ArtOfficial Intelligence</h1>
-      <Button label="Click Me" onClick={handleClick} />
+      <Button onClick={handleClick}>Click Me</Button>
     </div>
   )
 }
