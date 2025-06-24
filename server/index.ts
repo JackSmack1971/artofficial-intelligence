@@ -1,9 +1,9 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
 
 const app = express()
 app.use(express.json())
 
-app.get('/health', (_: Request, res: Response) => res.json({ status: 'ok' }))
+app.get('/health', (_, res) => res.json({ status: 'ok' }))
 
 export function startServer(port: number) {
   app.listen(port, () => {
