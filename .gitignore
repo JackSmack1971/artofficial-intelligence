@@ -4,3 +4,5 @@ dist
 coverage
 *.js
 !eslint.config.js
+.env.local
+.env.*
