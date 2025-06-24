@@ -1,11 +1,11 @@
-import { defineConfig } from "vite";
+import { defineConfig, type ViteDevServer } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import { createSecurityMiddleware } from "./server/security";
 
 const securityPlugin = {
   name: "security-middleware",
-  configureServer(server: any) {
+  configureServer(server: ViteDevServer) {
     server.middlewares.use(createSecurityMiddleware());
   },
 };
