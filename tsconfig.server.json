@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "server/dist",
+    "rootDir": "server",
+    "lib": ["ES2020"],
+    "module": "esnext",
+    "noEmit": false
+  },
+  "include": ["server"]
+}
