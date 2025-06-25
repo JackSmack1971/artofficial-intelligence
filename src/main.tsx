@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import HomePage from "@/pages/HomePage";
 
-const rootElement = document.getElementById("root") as HTMLElement | null;
-if (!rootElement) {
+const container = document.getElementById("root") as HTMLElement | null;
+if (!container) {
   throw new Error("Root element not found");
 }
 
-ReactDOM.createRoot(rootElement).render(
+ReactDOM.createRoot(container).render(
   <React.StrictMode>
     <HomePage />
   </React.StrictMode>,
