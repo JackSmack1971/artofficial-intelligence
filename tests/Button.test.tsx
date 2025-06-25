@@ -16,4 +16,19 @@ describe('Button variants', () => {
     expect(btn.className).toContain('from-ai-accent')
     expect(btn.className).toContain('to-ai-primary')
   })
+
+  it('shows ai icon when aiPowered', () => {
+    const { getByText } = render(
+      <Button aiPowered variant="ai-primary">
+        Test
+      </Button>
+    )
+    expect(getByText('🤖')).toBeTruthy()
+  })
+
+  it('uses default styling', () => {
+    const { getByRole } = render(<Button>Default</Button>)
+    const btn = getByRole('button') as HTMLButtonElement
+    expect(btn.className).toContain('transition-all')
+  })
 })
