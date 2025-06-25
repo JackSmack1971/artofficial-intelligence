@@ -1,11 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { apiClient, ApiError } from '../src/lib/apiClient'
 
-declare global {
-  // eslint-disable-next-line no-var
-  var fetch: typeof fetch
-}
-
 beforeEach(() => {
   vi.stubEnv('VITE_API_BASE_URL', 'http://local')
 })
@@ -17,7 +12,7 @@ describe('apiClient', () => {
 
   it('returns data on success', async () => {
     global.fetch = vi.fn(() =>
-      Promise.resolve({ ok: true, json: () => Promise.resolve({ ok: true }) })
+      Promise.resolve(new Response(JSON.stringify({ ok: true }), { status: 200 }))
     )
     const res = await apiClient('/path')
     expect(res).toEqual({ ok: true })
@@ -29,7 +24,7 @@ describe('apiClient', () => {
 
   it('throws ApiError for non-ok response', async () => {
     global.fetch = vi.fn(() =>
-      Promise.resolve({ ok: false, status: 500 })
+      Promise.resolve(new Response('', { status: 500 }))
     )
     await expect(apiClient('/error')).rejects.toBeInstanceOf(ApiError)
   })
@@ -39,7 +34,9 @@ describe('apiClient', () => {
       .fn()
       .mockRejectedValueOnce(new Error('fail1'))
       .mockRejectedValueOnce(new Error('fail2'))
-      .mockResolvedValue({ ok: true, json: () => Promise.resolve({ done: true }) })
+      .mockResolvedValue(
+        new Response(JSON.stringify({ done: true }), { status: 200 })
+      )
     global.fetch = mock
     const res = await apiClient('/retry')
     expect(res).toEqual({ done: true })
